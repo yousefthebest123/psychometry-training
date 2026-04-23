@@ -508,8 +508,349 @@ const VOCAB_FAMILIES = [
   }
 ];
 
+const EXTRA_VOCAB_FAMILIES = [
+  {
+    family: 'adapt',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'Students adapt quickly when the rules are clear.',
+    forms: [
+      { pos: 'verb', word: 'adapt', simple: 'to adjust to new conditions', arabic: 'يتأقلم / يتكيف', synonym: 'adjust' },
+      { pos: 'noun', word: 'adaptation', simple: 'the process of adjusting', arabic: 'تكيّف', synonym: 'adjustment' },
+      { pos: 'adjective', word: 'adaptable', simple: 'able to adjust easily', arabic: 'مرن / قابل للتكيف', synonym: 'flexible' },
+      { pos: 'adverb', word: 'adaptably', simple: 'in a flexible way', arabic: 'بمرونة', synonym: 'flexibly' },
+      { pos: 'adjective', word: 'adaptive', simple: 'changing well with circumstances', arabic: 'تكيفي', synonym: 'flexible' }
+    ]
+  },
+  {
+    family: 'assume',
+    category: 'Frequent psychometric',
+    difficulty: 'medium',
+    sentence: 'Do not assume the conclusion without checking the evidence.',
+    forms: [
+      { pos: 'verb', word: 'assume', simple: 'to accept as true without full proof', arabic: 'يفترض', synonym: 'suppose' },
+      { pos: 'noun', word: 'assumption', simple: 'a belief accepted without proof', arabic: 'افتراض', synonym: 'supposition' },
+      { pos: 'adjective', word: 'assumed', simple: 'accepted without proof', arabic: 'مفترض', synonym: 'supposed' },
+      { pos: 'adverb', word: 'assumingly', simple: 'in a way based on assumptions', arabic: 'افتراضيا', synonym: 'supposedly' },
+      { pos: 'adjective', word: 'assumptive', simple: 'based on assumptions', arabic: 'افتراضي', synonym: 'presumptive' }
+    ]
+  },
+  {
+    family: 'attain',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'The researcher attained a clear result after many trials.',
+    forms: [
+      { pos: 'verb', word: 'attain', simple: 'to reach or achieve', arabic: 'يحقق / يبلغ', synonym: 'achieve' },
+      { pos: 'noun', word: 'attainment', simple: 'something achieved', arabic: 'إنجاز / تحصيل', synonym: 'achievement' },
+      { pos: 'adjective', word: 'attainable', simple: 'possible to achieve', arabic: 'قابل للتحقيق', synonym: 'achievable' },
+      { pos: 'adverb', word: 'attainably', simple: 'in a way that can be achieved', arabic: 'بشكل قابل للتحقيق', synonym: 'achievably' },
+      { pos: 'adjective', word: 'unattainable', simple: 'not possible to achieve', arabic: 'غير قابل للتحقيق', synonym: 'impossible' }
+    ]
+  },
+  {
+    family: 'classify',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'The questions classify ideas by topic and method.',
+    forms: [
+      { pos: 'verb', word: 'classify', simple: 'to group by type', arabic: 'يصنف', synonym: 'categorize' },
+      { pos: 'noun', word: 'classification', simple: 'the process of grouping', arabic: 'تصنيف', synonym: 'categorization' },
+      { pos: 'adjective', word: 'classified', simple: 'grouped by category', arabic: 'مصنف', synonym: 'categorized' },
+      { pos: 'adverb', word: 'classifiably', simple: 'in a way that can be categorized', arabic: 'بشكل قابل للتصنيف', synonym: 'categorically' },
+      { pos: 'adjective', word: 'classificatory', simple: 'related to classification', arabic: 'تصنيفي', synonym: 'categorical' }
+    ]
+  },
+  {
+    family: 'compel',
+    category: 'Reading & reasoning',
+    difficulty: 'hard',
+    sentence: 'Strong evidence can compel us to revise our view.',
+    forms: [
+      { pos: 'verb', word: 'compel', simple: 'to force someone to act', arabic: 'يجبر / يرغم', synonym: 'force' },
+      { pos: 'noun', word: 'compulsion', simple: 'a strong force or urge', arabic: 'إجبار / قهر', synonym: 'force' },
+      { pos: 'adjective', word: 'compelling', simple: 'very convincing or forceful', arabic: 'مقنع جدا / قاهر', synonym: 'convincing' },
+      { pos: 'adverb', word: 'compellingly', simple: 'in a very convincing way', arabic: 'بشكل مقنع جدا', synonym: 'convincingly' },
+      { pos: 'adjective', word: 'compulsory', simple: 'required by rule', arabic: 'إلزامي', synonym: 'mandatory' }
+    ]
+  },
+  {
+    family: 'comprehend',
+    category: 'Frequent psychometric',
+    difficulty: 'medium',
+    sentence: 'Good readers comprehend both details and structure.',
+    forms: [
+      { pos: 'verb', word: 'comprehend', simple: 'to understand fully', arabic: 'يفهم تماما / يستوعب', synonym: 'understand' },
+      { pos: 'noun', word: 'comprehension', simple: 'full understanding', arabic: 'فهم / استيعاب', synonym: 'understanding' },
+      { pos: 'adjective', word: 'comprehensive', simple: 'covering many parts fully', arabic: 'شامل', synonym: 'complete' },
+      { pos: 'adverb', word: 'comprehensively', simple: 'in a complete and broad way', arabic: 'بشكل شامل', synonym: 'thoroughly' },
+      { pos: 'adjective', word: 'comprehensible', simple: 'easy to understand', arabic: 'مفهوم / قابل للفهم', synonym: 'understandable' }
+    ]
+  },
+  {
+    family: 'constrain',
+    category: 'Civic & legal',
+    difficulty: 'hard',
+    sentence: 'Limited time constrains how deeply you can analyze.',
+    forms: [
+      { pos: 'verb', word: 'constrain', simple: 'to limit by force or rules', arabic: 'يقيد / يحد', synonym: 'limit' },
+      { pos: 'noun', word: 'constraint', simple: 'a limit or restriction', arabic: 'قيد / محدد', synonym: 'restriction' },
+      { pos: 'adjective', word: 'constrained', simple: 'limited or restricted', arabic: 'مقيد', synonym: 'restricted' },
+      { pos: 'adverb', word: 'constrainedly', simple: 'in a restricted way', arabic: 'بشكل مقيد', synonym: 'restrictively' },
+      { pos: 'adjective', word: 'constraining', simple: 'causing limits', arabic: 'مُقيِّد', synonym: 'limiting' }
+    ]
+  },
+  {
+    family: 'convey',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'A short sentence can convey a complex idea.',
+    forms: [
+      { pos: 'verb', word: 'convey', simple: 'to communicate or carry meaning', arabic: 'ينقل / يوصل', synonym: 'communicate' },
+      { pos: 'noun', word: 'conveyance', simple: 'the act of transmitting something', arabic: 'نقل / إيصال', synonym: 'transmission' },
+      { pos: 'adjective', word: 'conveyed', simple: 'communicated clearly', arabic: 'منقول / مُوصل', synonym: 'communicated' },
+      { pos: 'adverb', word: 'conveyingly', simple: 'in a way that communicates meaning', arabic: 'بشكل ناقل للمعنى', synonym: 'expressively' },
+      { pos: 'noun', word: 'conveyor', simple: 'something that carries or transmits', arabic: 'ناقل', synonym: 'transporter' }
+    ]
+  },
+  {
+    family: 'correlate',
+    category: 'Reading & reasoning',
+    difficulty: 'hard',
+    sentence: 'The data correlate with the new hypothesis.',
+    forms: [
+      { pos: 'verb', word: 'correlate', simple: 'to show a relationship between things', arabic: 'يرتبط / يقارن ارتباطيا', synonym: 'relate' },
+      { pos: 'noun', word: 'correlation', simple: 'a mutual relationship between variables', arabic: 'ارتباط', synonym: 'relationship' },
+      { pos: 'adjective', word: 'correlative', simple: 'mutually related', arabic: 'ارتباطي', synonym: 'related' },
+      { pos: 'adverb', word: 'correlatively', simple: 'in a mutually related way', arabic: 'بشكل ارتباطي', synonym: 'relationally' },
+      { pos: 'adjective', word: 'correlated', simple: 'shown to be related', arabic: 'مرتبط', synonym: 'associated' }
+    ]
+  },
+  {
+    family: 'derive',
+    category: 'Frequent psychometric',
+    difficulty: 'medium',
+    sentence: 'We can derive the formula from a simpler rule.',
+    forms: [
+      { pos: 'verb', word: 'derive', simple: 'to obtain from a source', arabic: 'يشتق / يستخلص', synonym: 'obtain' },
+      { pos: 'noun', word: 'derivation', simple: 'the process of obtaining from a source', arabic: 'اشتقاق / استنتاج', synonym: 'inference' },
+      { pos: 'adjective', word: 'derivative', simple: 'based on something earlier', arabic: 'مشتق', synonym: 'secondary' },
+      { pos: 'adverb', word: 'derivatively', simple: 'in a way based on a source', arabic: 'بشكل مشتق', synonym: 'secondarily' },
+      { pos: 'adjective', word: 'derived', simple: 'obtained from another source', arabic: 'مستمد / مشتق', synonym: 'obtained' }
+    ]
+  },
+  {
+    family: 'disperse',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'The particles disperse quickly in water.',
+    forms: [
+      { pos: 'verb', word: 'disperse', simple: 'to spread out in different directions', arabic: 'ينتشر / يتفرق', synonym: 'spread' },
+      { pos: 'noun', word: 'dispersion', simple: 'the act of spreading out', arabic: 'تشتت / انتشار', synonym: 'spread' },
+      { pos: 'adjective', word: 'dispersed', simple: 'spread out', arabic: 'مبعثر / منتشر', synonym: 'scattered' },
+      { pos: 'adverb', word: 'dispersedly', simple: 'in a scattered way', arabic: 'بشكل متفرق', synonym: 'scatteredly' },
+      { pos: 'adjective', word: 'dispersive', simple: 'tending to spread things apart', arabic: 'مشتت', synonym: 'scattering' }
+    ]
+  },
+  {
+    family: 'emerge',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'A new pattern may emerge after careful review.',
+    forms: [
+      { pos: 'verb', word: 'emerge', simple: 'to become visible or known', arabic: 'يظهر / يبرز', synonym: 'appear' },
+      { pos: 'noun', word: 'emergence', simple: 'the process of appearing', arabic: 'ظهور / بروز', synonym: 'appearance' },
+      { pos: 'adjective', word: 'emergent', simple: 'coming into view or existence', arabic: 'ناشئ / ظاهر', synonym: 'arising' },
+      { pos: 'adverb', word: 'emergently', simple: 'in a newly appearing way', arabic: 'بشكل ناشئ', synonym: 'newly' },
+      { pos: 'adjective', word: 'emerging', simple: 'starting to become important', arabic: 'آخذ بالظهور', synonym: 'developing' }
+    ]
+  },
+  {
+    family: 'enhance',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'Practice can enhance both speed and accuracy.',
+    forms: [
+      { pos: 'verb', word: 'enhance', simple: 'to improve or increase quality', arabic: 'يعزز / يحسن', synonym: 'improve' },
+      { pos: 'noun', word: 'enhancement', simple: 'an improvement or increase', arabic: 'تعزيز / تحسين', synonym: 'improvement' },
+      { pos: 'adjective', word: 'enhanced', simple: 'improved or strengthened', arabic: 'محسن / معزز', synonym: 'improved' },
+      { pos: 'adverb', word: 'enhancingly', simple: 'in a way that improves quality', arabic: 'بشكل معزز', synonym: 'improvingly' },
+      { pos: 'adjective', word: 'enhancing', simple: 'serving to improve', arabic: 'محسن', synonym: 'improving' }
+    ]
+  },
+  {
+    family: 'estimate',
+    category: 'Frequent psychometric',
+    difficulty: 'medium',
+    sentence: 'You should estimate the answer before calculating exactly.',
+    forms: [
+      { pos: 'verb', word: 'estimate', simple: 'to roughly calculate or judge', arabic: 'يقدّر تقريبا', synonym: 'approximate' },
+      { pos: 'noun', word: 'estimation', simple: 'a rough judgment or calculation', arabic: 'تقدير', synonym: 'approximation' },
+      { pos: 'adjective', word: 'estimated', simple: 'judged approximately', arabic: 'مُقدَّر', synonym: 'approximate' },
+      { pos: 'adverb', word: 'approximately', simple: 'not exactly, but close', arabic: 'تقريبا', synonym: 'roughly' },
+      { pos: 'adjective', word: 'estimative', simple: 'related to estimation', arabic: 'تقديري', synonym: 'approximate' }
+    ]
+  },
+  {
+    family: 'exceed',
+    category: 'Quantitative logic',
+    difficulty: 'medium',
+    sentence: 'The final score should not exceed the maximum.',
+    forms: [
+      { pos: 'verb', word: 'exceed', simple: 'to go beyond a limit', arabic: 'يتجاوز', synonym: 'surpass' },
+      { pos: 'noun', word: 'excess', simple: 'an amount beyond what is needed', arabic: 'فائض / زيادة', synonym: 'surplus' },
+      { pos: 'adjective', word: 'excessive', simple: 'too much', arabic: 'مفرط / زائد', synonym: 'too much' },
+      { pos: 'adverb', word: 'excessively', simple: 'to too great a degree', arabic: 'بشكل مفرط', synonym: 'overly' },
+      { pos: 'adjective', word: 'exceeding', simple: 'greater than expected', arabic: 'متجاوز', synonym: 'surpassing' }
+    ]
+  },
+  {
+    family: 'exclude',
+    category: 'Civic & legal',
+    difficulty: 'medium',
+    sentence: 'The rule excludes cases that do not meet the condition.',
+    forms: [
+      { pos: 'verb', word: 'exclude', simple: 'to leave out', arabic: 'يستبعد / يستثني', synonym: 'omit' },
+      { pos: 'noun', word: 'exclusion', simple: 'the act of leaving out', arabic: 'استبعاد / إقصاء', synonym: 'omission' },
+      { pos: 'adjective', word: 'exclusive', simple: 'limited to a specific group', arabic: 'حصري / استثنائي', synonym: 'limited' },
+      { pos: 'adverb', word: 'exclusively', simple: 'only and no others', arabic: 'حصريا', synonym: 'solely' },
+      { pos: 'adjective', word: 'excluded', simple: 'left out', arabic: 'مستبعد', synonym: 'omitted' }
+    ]
+  },
+  {
+    family: 'expose',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'The article exposes weaknesses in the argument.',
+    forms: [
+      { pos: 'verb', word: 'expose', simple: 'to reveal something hidden', arabic: 'يكشف / يفضح', synonym: 'reveal' },
+      { pos: 'noun', word: 'exposure', simple: 'the state of being revealed', arabic: 'تعرية / كشف / تعرض', synonym: 'disclosure' },
+      { pos: 'adjective', word: 'exposed', simple: 'left open or revealed', arabic: 'مكشوف', synonym: 'open' },
+      { pos: 'adverb', word: 'exposingly', simple: 'in a revealing way', arabic: 'بشكل كاشف', synonym: 'revealingly' },
+      { pos: 'adjective', word: 'expository', simple: 'intended to explain clearly', arabic: 'تفسيري / بياني', synonym: 'explanatory' }
+    ]
+  },
+  {
+    family: 'facilitate',
+    category: 'Reading & reasoning',
+    difficulty: 'hard',
+    sentence: 'Clear labels facilitate quick understanding.',
+    forms: [
+      { pos: 'verb', word: 'facilitate', simple: 'to make something easier', arabic: 'يسهل', synonym: 'ease' },
+      { pos: 'noun', word: 'facilitation', simple: 'the act of making easier', arabic: 'تيسير', synonym: 'simplification' },
+      { pos: 'adjective', word: 'facilitating', simple: 'helping make progress easier', arabic: 'مُيسِّر', synonym: 'helpful' },
+      { pos: 'adverb', word: 'facilitatively', simple: 'in a way that helps progress', arabic: 'بشكل ميسّر', synonym: 'helpfully' },
+      { pos: 'noun', word: 'facilitator', simple: 'a person who helps a process move', arabic: 'مُيسّر', synonym: 'moderator' }
+    ]
+  },
+  {
+    family: 'fluctuate',
+    category: 'Quantitative logic',
+    difficulty: 'hard',
+    sentence: 'Values fluctuate across different conditions.',
+    forms: [
+      { pos: 'verb', word: 'fluctuate', simple: 'to rise and fall irregularly', arabic: 'يتقلب / يتذبذب', synonym: 'vary' },
+      { pos: 'noun', word: 'fluctuation', simple: 'an irregular change up and down', arabic: 'تقلب / تذبذب', synonym: 'variation' },
+      { pos: 'adjective', word: 'fluctuating', simple: 'changing up and down', arabic: 'متقلب', synonym: 'variable' },
+      { pos: 'adverb', word: 'fluctuationally', simple: 'in an up-and-down pattern', arabic: 'بشكل متذبذب', synonym: 'variably' },
+      { pos: 'adjective', word: 'fluctuant', simple: 'subject to irregular changes', arabic: 'متذبذب', synonym: 'unstable' }
+    ]
+  },
+  {
+    family: 'formulate',
+    category: 'Frequent psychometric',
+    difficulty: 'hard',
+    sentence: 'The scientist formulated a clearer hypothesis.',
+    forms: [
+      { pos: 'verb', word: 'formulate', simple: 'to express systematically', arabic: 'يصوغ / يضع صيغة', synonym: 'frame' },
+      { pos: 'noun', word: 'formulation', simple: 'the way something is expressed', arabic: 'صياغة', synonym: 'wording' },
+      { pos: 'adjective', word: 'formulated', simple: 'expressed in a clear system', arabic: 'مصاغ', synonym: 'structured' },
+      { pos: 'adverb', word: 'formulatively', simple: 'in a systematic wording style', arabic: 'بشكل صياغي', synonym: 'systematically' },
+      { pos: 'noun', word: 'formula', simple: 'a fixed expression or rule', arabic: 'صيغة / قاعدة', synonym: 'rule' }
+    ]
+  },
+  {
+    family: 'integrate',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'You must integrate data from both passages.',
+    forms: [
+      { pos: 'verb', word: 'integrate', simple: 'to combine parts into a whole', arabic: 'يدمج / يوحد', synonym: 'combine' },
+      { pos: 'noun', word: 'integration', simple: 'the act of combining into a whole', arabic: 'دمج / تكامل', synonym: 'combination' },
+      { pos: 'adjective', word: 'integrated', simple: 'combined into one system', arabic: 'متكامل / مدمج', synonym: 'combined' },
+      { pos: 'adverb', word: 'integratively', simple: 'in a way that combines parts', arabic: 'بشكل تكاملي', synonym: 'holistically' },
+      { pos: 'adjective', word: 'integrative', simple: 'aiming to combine different parts', arabic: 'تكاملي', synonym: 'combining' }
+    ]
+  },
+  {
+    family: 'manipulate',
+    category: 'Reading & reasoning',
+    difficulty: 'hard',
+    sentence: 'Some headlines manipulate emotions to gain attention.',
+    forms: [
+      { pos: 'verb', word: 'manipulate', simple: 'to control cleverly, often unfairly', arabic: 'يتلاعب / يسيطر بمهارة', synonym: 'control' },
+      { pos: 'noun', word: 'manipulation', simple: 'clever or unfair control', arabic: 'تلاعب', synonym: 'control' },
+      { pos: 'adjective', word: 'manipulative', simple: 'trying to control others unfairly', arabic: 'متلاعب', synonym: 'controlling' },
+      { pos: 'adverb', word: 'manipulatively', simple: 'in an unfairly controlling way', arabic: 'بشكل متلاعب', synonym: 'controllingly' },
+      { pos: 'noun', word: 'manipulator', simple: 'a person who manipulates', arabic: 'متلاعب', synonym: 'controller' }
+    ]
+  },
+  {
+    family: 'mediate',
+    category: 'Civic & legal',
+    difficulty: 'medium',
+    sentence: 'A third party can mediate a conflict.',
+    forms: [
+      { pos: 'verb', word: 'mediate', simple: 'to help settle a disagreement', arabic: 'يتوسط / يوسّط', synonym: 'arbitrate' },
+      { pos: 'noun', word: 'mediation', simple: 'the act of settling by a mediator', arabic: 'وساطة', synonym: 'arbitration' },
+      { pos: 'adjective', word: 'mediatory', simple: 'serving to settle disputes', arabic: 'وساطي', synonym: 'arbitrative' },
+      { pos: 'adverb', word: 'mediatively', simple: 'in a balancing and settling way', arabic: 'بشكل وساطي', synonym: 'arbitratively' },
+      { pos: 'noun', word: 'mediator', simple: 'person who helps two sides agree', arabic: 'وسيط', synonym: 'arbitrator' }
+    ]
+  },
+  {
+    family: 'mitigate',
+    category: 'Reading & reasoning',
+    difficulty: 'hard',
+    sentence: 'Extra evidence can mitigate doubts about a claim.',
+    forms: [
+      { pos: 'verb', word: 'mitigate', simple: 'to make less severe', arabic: 'يخفف / يحدّ من', synonym: 'reduce' },
+      { pos: 'noun', word: 'mitigation', simple: 'the act of reducing severity', arabic: 'تخفيف', synonym: 'reduction' },
+      { pos: 'adjective', word: 'mitigating', simple: 'making something less severe', arabic: 'مخفف', synonym: 'reducing' },
+      { pos: 'adverb', word: 'mitigatingly', simple: 'in a way that softens severity', arabic: 'بشكل مخفف', synonym: 'softeningly' },
+      { pos: 'adjective', word: 'mitigated', simple: 'made less severe', arabic: 'مخفف', synonym: 'reduced' }
+    ]
+  },
+  {
+    family: 'negotiate',
+    category: 'Civic & legal',
+    difficulty: 'medium',
+    sentence: 'The two sides negotiated a practical compromise.',
+    forms: [
+      { pos: 'verb', word: 'negotiate', simple: 'to discuss in order to reach agreement', arabic: 'يفاوض', synonym: 'bargain' },
+      { pos: 'noun', word: 'negotiation', simple: 'discussion to reach agreement', arabic: 'مفاوضات', synonym: 'bargaining' },
+      { pos: 'adjective', word: 'negotiable', simple: 'open to discussion and agreement', arabic: 'قابل للتفاوض', synonym: 'flexible' },
+      { pos: 'adverb', word: 'negotiably', simple: 'in a way open to discussion', arabic: 'بشكل قابل للتفاوض', synonym: 'flexibly' },
+      { pos: 'noun', word: 'negotiator', simple: 'person who conducts negotiations', arabic: 'مفاوض', synonym: 'delegate' }
+    ]
+  },
+  {
+    family: 'persist',
+    category: 'Reading & reasoning',
+    difficulty: 'medium',
+    sentence: 'Some errors persist even after repeated practice.',
+    forms: [
+      { pos: 'verb', word: 'persist', simple: 'to continue firmly despite difficulty', arabic: 'يستمر / يثابر', synonym: 'continue' },
+      { pos: 'noun', word: 'persistence', simple: 'continued effort over time', arabic: 'مثابرة / إصرار', synonym: 'perseverance' },
+      { pos: 'adjective', word: 'persistent', simple: 'continuing for a long time', arabic: 'مستمر / مثابر', synonym: 'continuous' },
+      { pos: 'adverb', word: 'persistently', simple: 'in a steady and repeated way', arabic: 'باستمرار / بإصرار', synonym: 'steadily' },
+      { pos: 'adjective', word: 'persisting', simple: 'still continuing', arabic: 'مستمر', synonym: 'ongoing' }
+    ]
+  }
+];
+
 window.VOCAB_WORDS = (window.VOCAB_WORDS || []).concat(
-  VOCAB_FAMILIES.flatMap(group => group.forms.map(form => ({
+  [...VOCAB_FAMILIES, ...EXTRA_VOCAB_FAMILIES].flatMap(group => group.forms.map(form => ({
     word: form.word,
     simple: form.simple,
     arabic: form.arabic,
