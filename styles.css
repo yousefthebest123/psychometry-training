@@ -497,6 +497,49 @@ body[data-theme="light"] .site-header {
 }
 .flashcard__badge--back { background: rgba(217, 182, 122, 0.14); color: var(--secondary); border-color: rgba(217, 182, 122, 0.25); }
 .flashcard h2 { margin: 0; font-size: clamp(1.55rem, 2.8vw, 2.3rem); line-height: 1.2; white-space: pre-line; }
+.word-with-tts {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+.word-with-tts h2 {
+  flex: 1;
+}
+.tts-button {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(110, 192, 200, 0.12);
+  color: var(--primary-strong);
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  padding: 0;
+  margin-top: 4px;
+}
+.tts-button:hover {
+  background: rgba(110, 192, 200, 0.2);
+  border-color: rgba(110, 192, 200, 0.4);
+  transform: scale(1.05);
+}
+.tts-button:active {
+  transform: scale(0.95);
+}
+.tts-button.is-speaking {
+  background: rgba(110, 192, 200, 0.3);
+  border-color: rgba(110, 192, 200, 0.5);
+  animation: pulse 0.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
 .flashcard__explain,
 .flashcard__hint { margin: 0; }
 .rtl-card { direction: rtl; text-align: right; }
@@ -777,5 +820,15 @@ body[data-theme="light"] .site-header {
   .primary-button {
     min-height: 48px;
     padding: 12px 14px;
+  }
+  .word-with-tts {
+    align-items: center;
+    gap: 10px;
+  }
+  .tts-button {
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+    margin-top: 0;
   }
 }

@@ -76,6 +76,7 @@ const els = {
   vocabFlashcard: document.getElementById('vocabFlashcard'),
   vocabCardCategory: document.getElementById('vocabCardCategory'),
   vocabCardWord: document.getElementById('vocabCardWord'),
+  vocabCardTts: document.getElementById('vocabCardTts'),
   vocabCardYears: document.getElementById('vocabCardYears'),
   vocabCardSimple: document.getElementById('vocabCardSimple'),
   vocabCardPos: document.getElementById('vocabCardPos'),
@@ -358,6 +359,11 @@ function bindVocabControls() {
     renderVocabFlashcard();
     renderVocabWeak();
     renderHome();
+  });
+  els.vocabCardTts.addEventListener('click', () => {
+    const word = currentVocabCard();
+    if (!word) return;
+    speakWord(word.word);
   });
   els.startVocabQuiz.addEventListener('click', startVocabQuiz);
   els.resetVocabProgress.addEventListener('click', () => {
@@ -1119,4 +1125,34 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value).replace(/'/g, '&#39;');
+}
+
+function speakWord(word) {
+  // Cancel any ongoing speech
+  window.speechSynthesis.cancel();
+  
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.9;
+  utterance.pitch = 1;
+  utterance.volume = 1;
+  
+  const ttsButton = els.vocabCardTts;
+  if (ttsButton) {
+    ttsButton.classList.add('is-speaking');
+  }
+  
+  utterance.onend = () => {
+    if (ttsButton) {
+      ttsButton.classList.remove('is-speaking');
+    }
+  };
+  
+  utterance.onerror = () => {
+    if (ttsButton) {
+      ttsButton.classList.remove('is-speaking');
+    }
+  };
+  
+  window.speechSynthesis.speak(utterance);
 }
