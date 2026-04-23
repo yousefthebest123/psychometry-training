@@ -29,6 +29,7 @@ const els = {
   },
   navButtons: [...document.querySelectorAll('[data-nav]')],
   themeToggle: document.getElementById('themeToggle'),
+  resetAllData: document.getElementById('resetAllData'),
   homeStats: document.getElementById('homeStats'),
   mathStats: document.getElementById('mathStats'),
   vocabStats: document.getElementById('vocabStats'),
@@ -223,6 +224,22 @@ function bindNavigation() {
   els.themeToggle.addEventListener('click', () => {
     state.theme = state.theme === 'dark' ? 'light' : 'dark';
     saveState();
+    applyTheme();
+  });
+  els.resetAllData.addEventListener('click', () => {
+    if (!confirm('Clear ALL progress, settings, favorites, and saved data? This cannot be undone.')) return;
+    localStorage.clear();
+    window.__psychometryFallbackState = undefined;
+    state.theme = 'dark';
+    state.activeView = 'home';
+    state.math = { ratings: {}, search: '', topic: 'All', panel: 'cards', currentId: null };
+    state.vocab = { ratings: {}, search: '', category: 'All', panel: 'cards', currentId: null, favorites: {} };
+    mathFlipped = false;
+    vocabFlipped = false;
+    currentMathDrill = null;
+    currentVocabQuiz = null;
+    saveState();
+    renderAll();
     applyTheme();
   });
   els.mathSubnav.forEach(button => {
