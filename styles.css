@@ -789,9 +789,9 @@ body[data-theme="light"] .site-header {
   .stats-grid.compact { max-width: none; }
   .meaning-grid { grid-template-columns: 1fr; }
   .flashcard,
-  .flashcard__inner { min-height: 520px; }
+  .flashcard__inner { min-height: 600px; }
   .flashcard--vocab,
-  .flashcard--vocab .flashcard__inner { min-height: 680px; }
+  .flashcard--vocab .flashcard__inner { min-height: 860px; }
   .flashcard__face { padding: 18px; }
   .flashcard h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
   .rate-row {
