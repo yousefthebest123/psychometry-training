@@ -496,15 +496,19 @@ body[data-theme="light"] .site-header {
   font-size: 0.86rem;
 }
 .flashcard__badge--back { background: rgba(217, 182, 122, 0.14); color: var(--secondary); border-color: rgba(217, 182, 122, 0.25); }
-.flashcard h2 { margin: 0; font-size: clamp(1.55rem, 2.8vw, 2.3rem); line-height: 1.2; white-space: pre-line; }
+.flashcard h2 { margin: 0; font-size: clamp(1.55rem, 2.8vw, 2.3rem); line-height: 1.2; white-space: pre-line; word-wrap: break-word; overflow-wrap: break-word; }
 .word-with-tts {
   display: flex;
   align-items: flex-start;
   gap: 12px;
   width: 100%;
+  flex-wrap: wrap;
 }
 .word-with-tts h2 {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .tts-button {
   flex-shrink: 0;
@@ -788,7 +792,7 @@ body[data-theme="light"] .site-header {
   .flashcard__inner { min-height: 520px; }
   .flashcard--vocab,
   .flashcard--vocab .flashcard__inner { min-height: 680px; }
-  .flashcard__face { padding: 20px; }
+  .flashcard__face { padding: 18px; }
   .flashcard h2 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
   .rate-row {
     gap: 8px;
@@ -823,12 +827,19 @@ body[data-theme="light"] .site-header {
   }
   .word-with-tts {
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .word-with-tts h2 {
+    flex: 1 1 auto;
+    min-width: 0;
+    word-break: break-word;
   }
   .tts-button {
-    width: 52px;
-    height: 52px;
-    font-size: 1.4rem;
+    width: 48px;
+    height: 48px;
+    font-size: 1.3rem;
     margin-top: 0;
+    flex-shrink: 0;
   }
 }
