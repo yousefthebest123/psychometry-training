@@ -2,85 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, viewport-fit=cover"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Psychometry Trainer Hub</title>
-  <meta
-    name="description"
-    content="Dark, eye-friendly psychometry trainer with English UI, Hebrew math memorization, and English vocabulary practice."
-  />
+  <meta name="description" content="Dark, eye-friendly psychometry trainer with English UI, Hebrew math memorization, and English vocabulary practice." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-theme="dark">
-  <a class="skip-link" href="#mainContent">Skip to content</a>
-
   <div class="site-shell">
     <header class="site-header">
       <div class="brand-block">
-        <button class="brand" data-nav="home" type="button" aria-label="Go to home">
-          <span class="brand__mark" aria-hidden="true">◎</span>
+        <button class="brand" data-nav="home" type="button">
+          <span class="brand__mark">◎</span>
           <span>
             <strong>Psychometry Trainer Hub</strong>
             <small>English UI • Hebrew math deck</small>
           </span>
         </button>
       </div>
-
-      <button
-        id="navToggle"
-        class="nav-toggle"
-        type="button"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="mainNav"
-      >
-        ☰
-      </button>
-
-      <nav id="mainNav" class="top-nav" aria-label="Main navigation">
+      <nav class="top-nav" aria-label="Main navigation">
         <button class="nav-pill is-active" data-nav="home" type="button">Home</button>
         <button class="nav-pill" data-nav="math" type="button">Math training</button>
         <button class="nav-pill" data-nav="vocab" type="button">English vocabulary</button>
       </nav>
-
       <div class="header-tools">
-        <button
-          id="themeToggle"
-          class="theme-toggle"
-          type="button"
-          aria-label="Toggle theme"
-        >
-          ☾ Dark
-        </button>
-        <button
-          id="resetAllData"
-          class="ghost-button"
-          type="button"
-          title="Clear all progress, settings, and saved data from browser"
-        >
-          Reset all
-        </button>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">☾ Dark</button>
+        <button id="resetAllData" class="ghost-button" type="button" title="Clear all progress, settings, and saved data from browser">Reset all</button>
       </div>
     </header>
 
-    <main id="mainContent" class="main-wrap">
-      <section id="view-home" class="view is-active" aria-labelledby="homeTitle">
-        <div class="hero panel panel--compact">
+    <main class="main-wrap">
+      <section id="view-home" class="view is-active">
+        <div class="hero panel">
           <div class="hero__text">
             <p class="eyebrow">Built for fast recall, not giant mock exams</p>
-            <h1 id="homeTitle">Study the right things faster.</h1>
-            <p class="hero__lead">
-              This trainer keeps the interface in English, keeps the geometry content in Hebrew,
-              and focuses on flashcards, quick drills, and weak-point review.
-            </p>
-
-            <div class="hero__actions">
-              <button class="primary-button" type="button" data-nav="math">Open math trainer</button>
-              <button class="ghost-button" type="button" data-nav="vocab">Open vocabulary trainer</button>
-            </div>
-
+            <h1>Study the right things faster.</h1>
+            <p class="hero__lead">This trainer keeps the interface in English, keeps the geometry content in Hebrew, and focuses on flashcards, quick drills, and weak-point review.</p>
             <div class="hero__tags">
               <span class="soft-tag">Dark mode by default</span>
               <span class="soft-tag">Local progress saved</span>
@@ -88,23 +44,19 @@
               <span class="soft-tag">Vercel-ready</span>
             </div>
           </div>
-
-          <div class="hero__stats stats-grid" id="homeStats" aria-label="Home statistics"></div>
+          <div class="hero__stats stats-grid" id="homeStats"></div>
         </div>
 
         <div class="track-grid">
           <article class="track-card panel" data-nav="math">
-            <div class="track-card__icon" aria-hidden="true">△</div>
+            <div class="track-card__icon">△</div>
             <div>
               <h2>Math training</h2>
-              <p>
-                Memorize geometry formulas, shape rules, and the exact traps that show up in
-                psychometric questions.
-              </p>
+              <p>Memorize geometry formulas, shape rules, and the exact traps that show up in psychometric questions.</p>
               <ul class="feature-list">
                 <li>Hebrew flashcards</li>
                 <li>Formula bank</li>
-                <li>Full PDF summary</li>
+                  <li>Full PDF summary</li>
                 <li>Quick drills</li>
                 <li>Weak-point review</li>
               </ul>
@@ -113,13 +65,10 @@
           </article>
 
           <article class="track-card panel" data-nav="vocab">
-            <div class="track-card__icon" aria-hidden="true">Aa</div>
+            <div class="track-card__icon">Aa</div>
             <div>
               <h2>English vocabulary</h2>
-              <p>
-                Train on useful words pulled from the English psychometry practice tests and
-                review them with simple English and Arabic meaning.
-              </p>
+              <p>Train on useful words pulled from the English psychometry practice tests and review them with simple English and Arabic meaning.</p>
               <ul class="feature-list">
                 <li>Word cards</li>
                 <li>Quick meaning quizzes</li>
@@ -134,52 +83,34 @@
         <div class="info-grid">
           <section class="panel info-card">
             <h3>How the math side is organized</h3>
-            <p>
-              The math content is based on the uploaded geometry summary and is grouped into topics
-              like triangles, quadrilaterals, circles, polygons, and solid geometry.
-            </p>
+            <p>The math content is based on the uploaded geometry summary and is grouped into topics like triangles, quadrilaterals, circles, polygons, and solid geometry.</p>
           </section>
-
           <section class="panel info-card">
             <h3>Math PDF</h3>
-            <p>
-              The full geometry summary is also available as the original PDF so you can read or
-              print the source directly from the website.
-            </p>
+            <p>The full geometry summary is also available as the original PDF so you can read or print the source directly from the website.</p>
           </section>
-
           <section class="panel info-card">
             <h3>How the vocabulary side is organized</h3>
-            <p>
-              The starter deck is seeded from the uploaded English psychometry practice tests, then
-              rewritten into short and usable study cards with Arabic meaning.
-            </p>
+            <p>The starter deck is seeded from the uploaded English psychometry practice tests, then rewritten into short and usable study cards with Arabic meaning.</p>
           </section>
-
           <section class="panel info-card">
             <h3>What gets saved</h3>
-            <p>
-              Your theme, card ratings, weak items, favorites, and recent drill progress are saved
-              locally in the browser.
-            </p>
+            <p>Your theme, card ratings, weak items, favorites, and recent drill progress are saved locally in the browser.</p>
           </section>
         </div>
       </section>
 
-      <section id="view-math" class="view" aria-labelledby="mathTitle">
-        <div class="page-head panel panel--compact">
+      <section id="view-math" class="view">
+        <div class="page-head panel">
           <div>
             <p class="eyebrow">Math training</p>
-            <h1 id="mathTitle">Hebrew geometry memory deck</h1>
-            <p class="page-copy">
-              English controls, Hebrew math content. The goal is fast recall: what rule is this,
-              what formula fits, and what trap should you avoid?
-            </p>
+            <h1>Hebrew geometry memory deck</h1>
+            <p class="page-copy">English controls, Hebrew math content. The goal is fast recall: what rule is this, what formula fits, and what trap should you avoid?</p>
           </div>
           <div class="page-head__stats stats-grid compact" id="mathStats"></div>
         </div>
 
-        <div class="subnav" id="mathSubnav" aria-label="Math sections">
+        <div class="subnav" id="mathSubnav">
           <button class="subnav__pill is-active" data-math-panel="cards" type="button">Flashcards</button>
           <button class="subnav__pill" data-math-panel="bank" type="button">Formula bank</button>
           <button class="subnav__pill" data-math-panel="pdf" type="button">Math PDF</button>
@@ -187,84 +118,68 @@
           <button class="subnav__pill" data-math-panel="weak" type="button">Weak points</button>
         </div>
 
-        <section id="math-panel-cards" class="panel math-panel is-active" aria-labelledby="mathCardsTitle">
-          <div class="section-head section-head--compact">
-            <div>
-              <h2 id="mathCardsTitle">Flashcards</h2>
-              <p>Fast-recognition study mode with Hebrew concepts and compact answers.</p>
-            </div>
-          </div>
-
-          <div class="toolbar-grid toolbar-grid--study">
+        <section id="math-panel-cards" class="panel math-panel is-active">
+          <div class="toolbar-grid">
             <label class="field">
               <span>Search a formula or shape</span>
               <input id="mathSearch" type="search" placeholder="Try משולש, מעגל, ריבוע..." />
             </label>
-
             <label class="field">
               <span>Topic</span>
               <select id="mathTopicSelect"></select>
             </label>
-
             <div class="card-tools">
               <button id="mathShuffle" class="ghost-button" type="button">Pick another card</button>
-              <button id="mathFlip" class="primary-button" type="button">Flip card</button>
+              <button id="mathFlip" class="ghost-button" type="button">Flip card</button>
             </div>
           </div>
 
-          <div class="flashcard-layout flashcard-layout--focus">
-            <div class="study-main">
-              <div class="study-side panel panel--inner panel--study-main">
-                <p class="mini-label">Current study card</p>
-                <div class="flashcard" id="mathFlashcard" tabindex="0" aria-live="polite">
-                  <div class="flashcard__inner">
-                    <div class="flashcard__face flashcard__face--front rtl-card">
-                      <span class="flashcard__badge" id="mathCardTopic"></span>
-                      <div>
-                        <p class="flashcard__kicker">Front</p>
-                        <h2 id="mathCardFront"></h2>
-                      </div>
-                      <p class="flashcard__hint" id="mathCardHelper"></p>
+          <div class="flashcard-layout">
+            <div class="study-side panel panel--inner">
+              <p class="mini-label">Current study card</p>
+              <div class="flashcard" id="mathFlashcard" tabindex="0" aria-live="polite">
+                <div class="flashcard__inner">
+                  <div class="flashcard__face flashcard__face--front rtl-card">
+                    <span class="flashcard__badge" id="mathCardTopic"></span>
+                    <div>
+                      <p class="flashcard__kicker">Front</p>
+                      <h2 id="mathCardFront"></h2>
                     </div>
-
-                    <div class="flashcard__face flashcard__face--back rtl-card">
-                      <span class="flashcard__badge flashcard__badge--back">Answer</span>
-                      <h2 id="mathCardBack"></h2>
-                      <p class="flashcard__explain" id="mathCardExplain"></p>
-                      <div class="trap-box" id="mathCardTrapWrap">
-                        <span>Trap</span>
-                        <p id="mathCardTrap"></p>
-                      </div>
+                    <p class="flashcard__hint" id="mathCardHelper"></p>
+                  </div>
+                  <div class="flashcard__face flashcard__face--back rtl-card">
+                    <span class="flashcard__badge flashcard__badge--back">Answer</span>
+                    <h2 id="mathCardBack"></h2>
+                    <p class="flashcard__explain" id="mathCardExplain"></p>
+                    <div class="trap-box" id="mathCardTrapWrap">
+                      <span>Trap</span>
+                      <p id="mathCardTrap"></p>
                     </div>
                   </div>
                 </div>
-
-                <div class="rate-row" id="mathRateRow">
-                  <button class="rate-button rate-button--good" data-math-rate="knew" type="button">I knew it</button>
-                  <button class="rate-button rate-button--mid" data-math-rate="almost" type="button">Almost</button>
-                  <button class="rate-button rate-button--bad" data-math-rate="missed" type="button">Didn't know</button>
-                </div>
+              </div>
+              <div class="rate-row" id="mathRateRow">
+                <button class="rate-button rate-button--good" data-math-rate="knew" type="button">I knew it</button>
+                <button class="rate-button rate-button--mid" data-math-rate="almost" type="button">Almost</button>
+                <button class="rate-button rate-button--bad" data-math-rate="missed" type="button">Didn't know</button>
               </div>
             </div>
 
-            <aside class="study-side panel panel--inner panel--study-side">
+            <aside class="study-side panel panel--inner">
               <p class="mini-label">Deck progress</p>
               <div class="progress-stack" id="mathDeckProgress"></div>
               <div class="note-box">
                 <strong>Study rhythm</strong>
-                <p>
-                  New cards and weak cards come up more often. Cards you keep rating as
-                  “I knew it” will appear less often.
-                </p>
+                <p>New cards and weak cards come up more often. Cards you keep rating as “I knew it” will appear less often.</p>
               </div>
             </aside>
           </div>
         </section>
 
-        <section id="math-panel-bank" class="panel math-panel" aria-labelledby="mathBankTitle">
+        <section id="math-panel-bank" class="panel math-panel">
           <div class="bank-head">
             <div>
-              <h2 id="mathBankTitle">Formula bank</h2>
+              <h2>Formula bank</h2>
               <p>Search and browse the full Hebrew deck.</p>
             </div>
             <div class="count-pill" id="mathBankCount"></div>
@@ -272,10 +187,10 @@
           <div id="mathBankGrid" class="bank-grid"></div>
         </section>
 
-        <section id="math-panel-pdf" class="panel math-panel" aria-labelledby="mathPdfTitle">
+        <section id="math-panel-pdf" class="panel math-panel">
           <div class="bank-head">
             <div>
-              <h2 id="mathPdfTitle">Math PDF</h2>
+              <h2>Math PDF</h2>
               <p>Open the full geometry summary directly in the browser.</p>
             </div>
             <div class="card-tools">
@@ -286,14 +201,7 @@
           <iframe id="mathPdfFrame" class="pdf-frame" title="Math PDF preview"></iframe>
         </section>
 
-        <section id="math-panel-drill" class="panel math-panel" aria-labelledby="mathDrillTitle">
-          <div class="bank-head bank-head--mobile">
-            <div>
-              <h2 id="mathDrillTitle">Quick drill</h2>
-              <p>Short practice sets for formula recognition.</p>
-            </div>
-          </div>
-
+        <section id="math-panel-drill" class="panel math-panel">
           <div class="drill-builder">
             <label class="field">
               <span>Topic</span>
@@ -309,16 +217,15 @@
             </label>
             <button id="startMathDrill" class="primary-button" type="button">Start drill</button>
           </div>
-
           <div id="mathDrillWrap" class="quiz-wrap empty-state">
             Start a drill to practice formula recognition.
           </div>
         </section>
 
-        <section id="math-panel-weak" class="panel math-panel" aria-labelledby="mathWeakTitle">
+        <section id="math-panel-weak" class="panel math-panel">
           <div class="bank-head">
             <div>
-              <h2 id="mathWeakTitle">Weak points</h2>
+              <h2>Weak points</h2>
               <p>These are the cards you miss often or rate as "Almost" too many times.</p>
             </div>
             <button id="resetMathProgress" class="ghost-button" type="button">Reset math progress</button>
@@ -327,144 +234,105 @@
         </section>
       </section>
 
-      <section id="view-vocab" class="view" aria-labelledby="vocabTitle">
-        <div class="page-head panel panel--compact">
+      <section id="view-vocab" class="view">
+        <div class="page-head panel">
           <div>
             <p class="eyebrow">English vocabulary</p>
-            <h1 id="vocabTitle">Psychometric word trainer</h1>
-            <p class="page-copy">
-              Words are shown in English, explained in simple English, and backed by Arabic meaning
-              for quick recognition.
-            </p>
+            <h1>Psychometric word trainer</h1>
+            <p class="page-copy">Words are shown in English, explained in simple English, and backed by Arabic meaning for quick recognition.</p>
           </div>
           <div class="page-head__stats stats-grid compact" id="vocabStats"></div>
         </div>
 
-        <div class="subnav" id="vocabSubnav" aria-label="Vocabulary sections">
+        <div class="subnav" id="vocabSubnav">
           <button class="subnav__pill is-active" data-vocab-panel="cards" type="button">Word cards</button>
           <button class="subnav__pill" data-vocab-panel="quiz" type="button">Quick quiz</button>
           <button class="subnav__pill" data-vocab-panel="weak" type="button">Weak & saved</button>
         </div>
 
-        <section id="vocab-panel-cards" class="panel vocab-panel is-active" aria-labelledby="vocabCardsTitle">
-          <div class="section-head section-head--compact">
-            <div>
-              <h2 id="vocabCardsTitle">Word cards</h2>
-              <p>Fast vocabulary review with simple meaning, Arabic meaning, and example usage.</p>
-            </div>
-          </div>
-
-          <div class="toolbar-grid toolbar-grid--study">
+        <section id="vocab-panel-cards" class="panel vocab-panel is-active">
+          <div class="toolbar-grid">
             <label class="field">
               <span>Search a word</span>
               <input id="vocabSearch" type="search" placeholder="Try ambiguous, reliable, validity..." />
             </label>
-
             <label class="field">
               <span>Category</span>
               <select id="vocabCategorySelect"></select>
             </label>
-
             <div class="card-tools">
               <button id="vocabShuffle" class="ghost-button" type="button">Pick another word</button>
-              <button id="vocabFlip" class="primary-button" type="button">Flip card</button>
+              <button id="vocabFlip" class="ghost-button" type="button">Flip card</button>
             </div>
           </div>
 
-          <div class="flashcard-layout flashcard-layout--focus">
-            <div class="study-main">
-              <div class="study-side panel panel--inner panel--study-main">
-                <p class="mini-label">Current word card</p>
-                <div class="flashcard flashcard--vocab" id="vocabFlashcard" tabindex="0" aria-live="polite">
-                  <div class="flashcard__inner">
-                    <div class="flashcard__face flashcard__face--front">
-                      <span class="flashcard__badge" id="vocabCardCategory"></span>
-                      <div>
-                        <p class="flashcard__kicker">Front</p>
-                        <div class="word-with-tts">
-                          <h2 id="vocabCardWord"></h2>
-                          <button
-                            id="vocabCardTts"
-                            class="tts-button"
-                            type="button"
-                            aria-label="Speak word"
-                            title="Click to hear pronunciation"
-                          >
-                            🔊
-                          </button>
-                        </div>
+          <div class="flashcard-layout">
+            <div class="study-side panel panel--inner">
+              <p class="mini-label">Current word card</p>
+              <div class="flashcard flashcard--vocab" id="vocabFlashcard" tabindex="0" aria-live="polite">
+                <div class="flashcard__inner">
+                  <div class="flashcard__face flashcard__face--front">
+                    <span class="flashcard__badge" id="vocabCardCategory"></span>
+                    <div>
+                      <p class="flashcard__kicker">Front</p>
+                      <div class="word-with-tts">
+                        <h2 id="vocabCardWord"></h2>
+                        <button id="vocabCardTts" class="tts-button" type="button" aria-label="Speak word" title="Click to hear pronunciation">🔊</button>
                       </div>
-                      <p class="flashcard__hint" id="vocabCardYears"></p>
                     </div>
-
-                    <div class="flashcard__face flashcard__face--back">
-                      <span class="flashcard__badge flashcard__badge--back">Answer</span>
-                      <h2 id="vocabCardSimple"></h2>
-
-                      <dl class="meaning-grid">
-                        <div>
-                          <dt>Part of speech</dt>
-                          <dd id="vocabCardPos"></dd>
-                        </div>
-                        <div>
-                          <dt>Family</dt>
-                          <dd id="vocabCardFamily"></dd>
-                        </div>
-                      </dl>
-
-                      <dl class="meaning-grid">
-                        <div>
-                          <dt>Arabic meaning</dt>
-                          <dd id="vocabCardArabic"></dd>
-                        </div>
-                        <div>
-                          <dt>Synonym</dt>
-                          <dd id="vocabCardSynonym"></dd>
-                        </div>
-                      </dl>
-
-                      <div class="family-forms" id="vocabCardForms"></div>
-
-                      <div class="sentence-box">
-                        <span>Example sentence</span>
-                        <p id="vocabCardSentence"></p>
+                    <p class="flashcard__hint" id="vocabCardYears"></p>
+                  </div>
+                  <div class="flashcard__face flashcard__face--back">
+                    <span class="flashcard__badge flashcard__badge--back">Answer</span>
+                    <h2 id="vocabCardSimple"></h2>
+                    <dl class="meaning-grid">
+                      <div>
+                        <dt>Part of speech</dt>
+                        <dd id="vocabCardPos"></dd>
                       </div>
+                      <div>
+                        <dt>Family</dt>
+                        <dd id="vocabCardFamily"></dd>
+                      </div>
+                    </dl>
+                    <dl class="meaning-grid">
+                      <div>
+                        <dt>Arabic meaning</dt>
+                        <dd id="vocabCardArabic"></dd>
+                      </div>
+                      <div>
+                        <dt>Synonym</dt>
+                        <dd id="vocabCardSynonym"></dd>
+                      </div>
+                    </dl>
+                    <div class="family-forms" id="vocabCardForms"></div>
+                    <div class="sentence-box">
+                      <span>Example sentence</span>
+                      <p id="vocabCardSentence"></p>
                     </div>
                   </div>
                 </div>
-
-                <div class="rate-row">
-                  <button class="rate-button rate-button--good" data-vocab-rate="knew" type="button">I knew it</button>
-                  <button class="rate-button rate-button--mid" data-vocab-rate="almost" type="button">Almost</button>
-                  <button class="rate-button rate-button--bad" data-vocab-rate="missed" type="button">Didn't know</button>
-                  <button id="toggleFavorite" class="ghost-button" type="button">☆ Save word</button>
-                </div>
+              </div>
+              <div class="rate-row">
+                <button class="rate-button rate-button--good" data-vocab-rate="knew" type="button">I knew it</button>
+                <button class="rate-button rate-button--mid" data-vocab-rate="almost" type="button">Almost</button>
+                <button class="rate-button rate-button--bad" data-vocab-rate="missed" type="button">Didn't know</button>
+                <button id="toggleFavorite" class="ghost-button" type="button">☆ Save word</button>
               </div>
             </div>
 
-            <aside class="study-side panel panel--inner panel--study-side">
+            <aside class="study-side panel panel--inner">
               <p class="mini-label">Deck progress</p>
               <div class="progress-stack" id="vocabDeckProgress"></div>
               <div class="note-box">
                 <strong>Deck note</strong>
-                <p>
-                  This deck is built from the uploaded psychometry PDFs and normalized into word
-                  families. Each family is shown with verb, noun, adjective, and adverb forms for
-                  faster pattern learning.
-                </p>
+                <p>This deck is built from the uploaded psychometry PDFs and normalized into word families. Each family is shown with verb, noun, adjective, and adverb forms for faster pattern learning.</p>
               </div>
             </aside>
           </div>
         </section>
 
-        <section id="vocab-panel-quiz" class="panel vocab-panel" aria-labelledby="vocabQuizTitle">
-          <div class="bank-head bank-head--mobile">
-            <div>
-              <h2 id="vocabQuizTitle">Quick quiz</h2>
-              <p>Short drills for meaning recognition and recall.</p>
-            </div>
-          </div>
-
+        <section id="vocab-panel-quiz" class="panel vocab-panel">
           <div class="drill-builder">
             <label class="field">
               <span>Category</span>
@@ -480,21 +348,19 @@
             </label>
             <button id="startVocabQuiz" class="primary-button" type="button">Start quiz</button>
           </div>
-
           <div id="vocabQuizWrap" class="quiz-wrap empty-state">
             Start a quick quiz to match words and meanings.
           </div>
         </section>
 
-        <section id="vocab-panel-weak" class="panel vocab-panel" aria-labelledby="vocabWeakTitle">
+        <section id="vocab-panel-weak" class="panel vocab-panel">
           <div class="bank-head">
             <div>
-              <h2 id="vocabWeakTitle">Weak words & saved words</h2>
+              <h2>Weak words & saved words</h2>
               <p>Use this page when you want to revisit trouble spots or only the words you starred.</p>
             </div>
             <button id="resetVocabProgress" class="ghost-button" type="button">Reset vocabulary progress</button>
           </div>
-
           <div class="weak-columns">
             <div>
               <h3>Weak words</h3>
@@ -510,10 +376,7 @@
     </main>
 
     <footer class="site-footer panel">
-      <p>
-        <strong>Tip:</strong> open the site normally from <code>index.html</code>, or upload the
-        whole folder to Vercel as a static site.
-      </p>
+      <p><strong>Tip:</strong> open the site normally from <code>index.html</code>, or upload the whole folder to Vercel as a static site.</p>
     </footer>
   </div>
 
