@@ -420,6 +420,10 @@ body[data-theme="light"] .site-header {
   margin-top: 12px;
   perspective: 1200px;
 }
+.flashcard--vocab,
+.flashcard--vocab .flashcard__inner {
+  min-height: 560px;
+}
 .flashcard__inner {
   position: relative;
   width: 100%;
@@ -442,6 +446,7 @@ body[data-theme="light"] .site-header {
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
     var(--panel-strong);
   backface-visibility: hidden;
+  overflow: auto;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
 }
 .flashcard__face--back { transform: rotateY(180deg); }
@@ -476,6 +481,11 @@ body[data-theme="light"] .site-header {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
   margin: 14px 0 0;
+}
+.flashcard--vocab .family-forms {
+  max-height: 220px;
+  overflow: auto;
+  padding-right: 4px;
 }
 .family-forms--compact {
   margin-top: 10px;
@@ -649,16 +659,31 @@ body[data-theme="light"] .site-header {
 @media (max-width: 980px) {
   .site-shell { width: min(var(--max-width), calc(100% - 20px)); margin-top: 12px; }
   .site-header {
+    position: static;
     border-radius: 28px;
     flex-direction: column;
     align-items: stretch;
   }
-  .top-nav { justify-content: space-between; }
+  .top-nav { justify-content: space-between; gap: 8px; }
+  .top-nav .nav-pill,
+  .top-nav .theme-toggle {
+    flex: 1 1 0;
+    text-align: center;
+  }
   .hero,
   .page-head,
   .flashcard-layout,
   .weak-columns { grid-template-columns: 1fr; flex-direction: column; }
   .page-head { align-items: stretch; }
+  .toolbar-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .field,
+  .field--small {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
 }
 
 @media (max-width: 640px) {
@@ -674,5 +699,25 @@ body[data-theme="light"] .site-header {
   .stats-grid.compact { max-width: none; }
   .meaning-grid { grid-template-columns: 1fr; }
   .flashcard,
-  .flashcard__inner { min-height: 410px; }
+  .flashcard__inner { min-height: 460px; }
+  .flashcard--vocab,
+  .flashcard--vocab .flashcard__inner { min-height: 640px; }
+  .flashcard__face { padding: 18px; }
+  .rate-row {
+    gap: 8px;
+  }
+  .rate-row > button {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+  }
+  #toggleFavorite {
+    flex: 1 1 100%;
+  }
+  .subnav {
+    gap: 8px;
+  }
+  .subnav__pill {
+    flex: 1 1 calc(50% - 8px);
+    text-align: center;
+  }
 }

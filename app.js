@@ -1,5 +1,8 @@
 
 const STORAGE_KEY = 'psychometry-trainer-hub-v1';
+const LEGACY_STORAGE_KEYS = [STORAGE_KEY, 'psychometry-training-hub-v1', 'psychometry-training-hub'];
+const CORE_POS = ['verb', 'noun', 'adjective', 'adverb'];
+const POS_RANK = { verb: 0, noun: 1, adjective: 2, adverb: 3 };
 const MATH_PDF_PATH = 'قوانين هندسة- رلى شحادة.pdf';
 
 const defaultState = {
@@ -116,50 +119,92 @@ function init() {
 
 function loadState() {
   try {
-    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (!raw) return structuredClone(defaultState);
+    const rawText = readStoredState();
+    const raw = rawText ? JSON.parse(rawText) : null;
+    if (!raw) return cloneState(defaultState);
     return {
-      ...structuredClone(defaultState),
+      ...cloneState(defaultState),
       ...raw,
-      math: { ...structuredClone(defaultState.math), ...(raw.math || {}) },
-      vocab: { ...structuredClone(defaultState.vocab), ...(raw.vocab || {}) }
+      math: { ...cloneState(defaultState.math), ...(raw.math || {}) },
+      vocab: { ...cloneState(defaultState.vocab), ...(raw.vocab || {}) }
     };
   } catch (error) {
-    return structuredClone(defaultState);
+    return cloneState(defaultState);
   }
 }
 
 function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (error) {
+    // Keep runtime state even when browser storage is unavailable.
+    window.__psychometryFallbackState = JSON.stringify(state);
+  }
 }
 
 function normalizeVocabDeck(entries) {
-  return entries.map(entry => {
-    const forms = Array.isArray(entry.forms) && entry.forms.length
-      ? entry.forms.map(form => ({ ...form }))
+  const normalized = entries.map((entry, index) => {
+    const fallbackWord = normalizeWord(entry.word) || `term-${index + 1}`;
+    const family = normalizeWord(entry.family || entry.group || fallbackWord);
+    const fallbackSimple = entry.simple || '';
+    const fallbackArabic = entry.arabic || '';
+    const fallbackSynonym = entry.synonym || '';
+    const rawForms = Array.isArray(entry.forms) && entry.forms.length
+      ? entry.forms
       : [{
-          pos: entry.partOfSpeech || 'word',
-          word: entry.word,
-          simple: entry.simple,
-          arabic: entry.arabic,
-          synonym: entry.synonym || ''
+          pos: entry.partOfSpeech || inferPos(fallbackWord),
+          word: fallbackWord,
+          simple: fallbackSimple,
+          arabic: fallbackArabic,
+          synonym: fallbackSynonym
         }];
-    const mainForm = forms[0] || {};
-    const family = entry.family || entry.group || entry.word || mainForm.word;
+    const forms = rawForms
+      .map(form => ({
+        pos: normalizePos(form.pos || entry.partOfSpeech || inferPos(form.word || fallbackWord)),
+        word: normalizeWord(form.word || fallbackWord),
+        simple: String(form.simple || fallbackSimple || ''),
+        arabic: String(form.arabic || fallbackArabic || ''),
+        synonym: String(form.synonym || fallbackSynonym || '')
+      }))
+      .filter(form => !!form.word);
+
     return {
       ...entry,
-      word: entry.word || mainForm.word || family,
+      word: normalizeWord(entry.word || forms[0]?.word || family),
       family,
-      forms,
-      simple: entry.simple || mainForm.simple || '',
-      arabic: entry.arabic || mainForm.arabic || '',
-      synonym: entry.synonym || mainForm.synonym || '',
-      partOfSpeech: entry.partOfSpeech || mainForm.pos || 'word',
-      familyForms: entry.familyForms || forms,
+      forms: forms.length ? forms : [{ pos: 'noun', word: family, simple: fallbackSimple, arabic: fallbackArabic, synonym: fallbackSynonym }],
       sentence: entry.sentence || '',
       category: entry.category || 'Frequent psychometric',
       difficulty: entry.difficulty || 'medium',
       sourceYears: entry.sourceYears || []
+    };
+  });
+
+  const familyFormsMap = new Map();
+  normalized.forEach(entry => {
+    const list = familyFormsMap.get(entry.family) || [];
+    entry.forms.forEach(form => {
+      if (!list.some(existing => existing.pos === form.pos && normalizeWord(existing.word) === normalizeWord(form.word))) {
+        list.push(form);
+      }
+    });
+    familyFormsMap.set(entry.family, list);
+  });
+
+  return normalized.map(entry => {
+    const familyForms = ensureCoreForms(entry.family, familyFormsMap.get(entry.family) || entry.forms, entry);
+    const preferred = familyForms.find(form => normalizeWord(form.word) === normalizeWord(entry.word))
+      || familyForms.find(form => form.pos === 'noun')
+      || familyForms[0];
+    return {
+      ...entry,
+      word: entry.word || preferred.word,
+      forms: familyForms,
+      familyForms,
+      simple: entry.simple || preferred.simple || '',
+      arabic: entry.arabic || preferred.arabic || '',
+      synonym: entry.synonym || preferred.synonym || '',
+      partOfSpeech: normalizePos(entry.partOfSpeech || preferred.pos)
     };
   });
 }
@@ -503,9 +548,9 @@ function renderVocabFlashcard() {
   els.vocabFlashcard.classList.toggle('is-flipped', vocabFlipped);
   els.vocabCardCategory.textContent = word.category;
   els.vocabCardWord.textContent = word.word;
-  els.vocabCardYears.textContent = `${word.forms.length} forms in this family`;
+  els.vocabCardYears.textContent = `${(word.familyForms || word.forms || []).length} forms in this family`;
   els.vocabCardSimple.textContent = word.simple;
-  els.vocabCardPos.textContent = word.partOfSpeech || 'word';
+  els.vocabCardPos.textContent = formatPos(word.partOfSpeech || 'noun');
   els.vocabCardFamily.textContent = word.family || word.word;
   els.vocabCardArabic.textContent = word.arabic;
   els.vocabCardSynonym.textContent = word.synonym || '—';
@@ -635,7 +680,7 @@ function vocabCard(word, ratingEntry, forcedMastery = null) {
     <article class="bank-card">
       <span class="flashcard__badge">${escapeHtml(word.category)}</span>
       <h3>${escapeHtml(word.word)}</h3>
-      <p><strong>Part of speech:</strong> ${escapeHtml(word.partOfSpeech || 'word')}</p>
+      <p><strong>Part of speech:</strong> ${escapeHtml(formatPos(word.partOfSpeech || 'noun'))}</p>
       <p><strong>Family:</strong> ${escapeHtml(word.family || word.word)}</p>
       <p><strong>Simple meaning:</strong> ${escapeHtml(word.simple)}</p>
       <p><strong>Arabic:</strong> ${escapeHtml(word.arabic)}</p>
@@ -650,11 +695,12 @@ function vocabCard(word, ratingEntry, forcedMastery = null) {
 }
 
 function renderFamilyForms(card) {
-  if (!card.forms || !card.forms.length) return '';
-  return card.forms.map(form => `
+  const forms = card.familyForms || card.forms || [];
+  if (!forms.length) return '';
+  return forms.map(form => `
     <article class="family-form">
       <div class="family-form__head">
-        <span>${escapeHtml(form.pos || 'word')}</span>
+        <span>${escapeHtml(formatPos(form.pos || 'noun'))}</span>
         <strong>${escapeHtml(form.word)}</strong>
       </div>
       <p>${escapeHtml(form.simple || '')}</p>
@@ -966,6 +1012,84 @@ function shuffle(items) {
 
 function normalize(value) {
   return String(value || '').toLowerCase().trim();
+}
+
+function readStoredState() {
+  for (const key of LEGACY_STORAGE_KEYS) {
+    const value = localStorage.getItem(key);
+    if (value) return value;
+  }
+  return window.__psychometryFallbackState || null;
+}
+
+function cloneState(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function normalizeWord(value) {
+  return String(value || '').trim().toLowerCase();
+}
+
+function normalizePos(value) {
+  const raw = normalizeWord(value);
+  if (CORE_POS.includes(raw)) return raw;
+  if (raw === 'adj') return 'adjective';
+  if (raw === 'adv') return 'adverb';
+  if (raw === 'word') return 'noun';
+  return inferPos(raw);
+}
+
+function inferPos(word) {
+  const value = normalizeWord(word);
+  if (!value) return 'noun';
+  if (value.endsWith('ly')) return 'adverb';
+  if (/(tion|sion|ment|ness|ity|ance|ence|ship|ism|er|or)$/.test(value)) return 'noun';
+  if (/(ive|al|ful|less|ous|able|ible|ic|ary|ent|ant)$/.test(value)) return 'adjective';
+  if (/(ed|ing|ize|ise|fy)$/.test(value)) return 'verb';
+  return 'noun';
+}
+
+function ensureCoreForms(family, forms, entry) {
+  const fallback = forms[0] || {
+    pos: 'noun',
+    word: normalizeWord(entry.word || family),
+    simple: entry.simple || '',
+    arabic: entry.arabic || '',
+    synonym: entry.synonym || ''
+  };
+  const byPos = new Map();
+  forms.forEach(form => {
+    const pos = normalizePos(form.pos);
+    if (!byPos.has(pos)) {
+      byPos.set(pos, {
+        ...form,
+        pos,
+        word: normalizeWord(form.word || fallback.word),
+        simple: form.simple || fallback.simple || '',
+        arabic: form.arabic || fallback.arabic || '',
+        synonym: form.synonym || fallback.synonym || ''
+      });
+    }
+  });
+
+  CORE_POS.forEach(pos => {
+    if (!byPos.has(pos)) {
+      byPos.set(pos, {
+        pos,
+        word: pos === 'adverb' ? `${normalizeWord(family)}ly` : normalizeWord(family),
+        simple: fallback.simple || `Core ${pos} form of ${family}`,
+        arabic: fallback.arabic || 'غير متوفر',
+        synonym: fallback.synonym || ''
+      });
+    }
+  });
+
+  return [...byPos.values()].sort((a, b) => (POS_RANK[a.pos] ?? 99) - (POS_RANK[b.pos] ?? 99));
+}
+
+function formatPos(value) {
+  const pos = normalizePos(value);
+  return pos.charAt(0).toUpperCase() + pos.slice(1);
 }
 
 function escapeHtml(value) {
